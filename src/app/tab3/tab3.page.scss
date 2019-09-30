@@ -1,1 +1,24 @@
+.container {
+	margin: 0 auto;
+	display: flex;
+}
+
+.alinhamento-central {
+	height: 100%;
+	justify-content: center;
+	align-items: center;
+}
+
+.item {
+	flex: 1;
+	background: #6161dd;
+    text-align: center;
+    font-size: 30px;
+    width: 295px;
+    height: 257px;
+    border-radius: 10px;
+    color: #fff;
+    justify-content: center;
+    padding: 95px 0;
+}
 
