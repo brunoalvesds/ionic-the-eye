@@ -1,0 +1,30 @@
+.container {
+	margin: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+}
+
+.item {
+	flex: 1;
+	background: #6161dd;
+    text-align: center;
+    font-size: 30px;
+    width: 295px;
+    height: 257px;
+    border-radius: 10px;
+    color: #fff;
+    padding: 95px 0;
+}
+
+.position-image {
+    justify-content: center;
+    text-align: center;
+
+    .win {
+        width: 154px;
+        height: 154px;
+        object-fit: contain;
+        margin-top: 12.6%;    
+    }
+}
