@@ -14,4 +14,4 @@ import { LoginComponent } from './login.component';
   ],
   declarations: [LoginComponent]
 })
-export class Tab1PageModule {}
+export class LoginModule {}
