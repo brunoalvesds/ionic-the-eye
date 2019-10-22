@@ -34,8 +34,10 @@ export class LoginService {
         .then(res => {
           console.log(res);
           resolve(res);
+          this.router.navigateByUrl('home');
         }, err => {
           console.log(err);
+          alert('Login inválido.');
           reject(err);
         })
     })
@@ -50,6 +52,10 @@ export class LoginService {
       .signInWithPopup(provider)
       .then(res => {
         resolve(res);
+        this.router.navigateByUrl('home');
+      }, error => {
+        alert('Login inválido.');
+        reject(error);
       })
     })
   }
