@@ -1,3 +1,27 @@
-<p>
-  login works!
-</p>
+<ion-content>
+  <div class="loginPage">
+      <div class="logo">
+          <img src="../../../assets/img/logo.png" alt="">
+      </div>
+
+      <form class="loginForm">
+          <input [(ngModel)]="username" type="text" class="userName" name="userName" placeholder="Usuario">
+          <input [(ngModel)]="password" type="password" class="userPassword" name="userPassword" placeholder="Senha">
+          <button (click)="login()" class="submit">Login</button>
+      </form>
+
+      <div class="socialLogin">
+          <a href="#" class="facebookLogin" (click)="loginFacebook()">
+              <img src="../../../assets/img/facebook-icon.png" alt="">
+          </a>
+          <a href="#" class="googleLogin" (click)="loginGoogle()">
+              <img src="../../assets/img/google-icon.png" alt="">
+          </a>
+      </div>
+
+      <div class="accountOptions">
+          <button class="newAccount">Criar conta</button>
+          <a href="#" class="rememberPass">Esqueceu a senha?</a>
+      </div>
+  </div>
+</ion-content>

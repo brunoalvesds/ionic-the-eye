@@ -14,7 +14,7 @@ export class LoginService {
 
   onLogin(email, password) {
 
-    firebase.auth().signInWithEmailAndPassword(email, password)
+    this.afAuth.auth.signInWithEmailAndPassword(email, password)
       .then(data => {
         this.router.navigateByUrl('home');
       })
@@ -26,30 +26,27 @@ export class LoginService {
   }
 
   doFacebookLogin() {
-    return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.FacebookAuthProvider();
-      this.afAuth.auth
-        .signInWithPopup(provider)
-        .then(res => {
-          resolve(res);
-        }, err => {
-          console.log(err);
-          reject(err);
-        })
-    })
+    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
+      .then(data => {
+        this.router.navigateByUrl('home');
+      })
+      .catch(error => {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        this.toast.present(errorMessage);
+      });
   }
 
-  doGoogleLogin(){
-    return new Promise<any>((resolve, reject) => {
-      let provider = new firebase.auth.GoogleAuthProvider();
-      provider.addScope('profile');
-      provider.addScope('email');
-      this.afAuth.auth
-      .signInWithPopup(provider)
-      .then(res => {
-        resolve(res);
+  doGoogleLogin() {
+    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
+      .then(data => {
+        this.router.navigateByUrl('home');
       })
-    })
+      .catch(error => {
+        // const errorCode = error.code;
+        const errorMessage = error.message;
+        this.toast.present(errorMessage);
+      });
   }
 
 }

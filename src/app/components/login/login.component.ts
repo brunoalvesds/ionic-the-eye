@@ -10,10 +10,13 @@ export class LoginComponent implements OnInit {
 
   constructor(private loginService: LoginService) { }
 
+  username: "";
+  password: "";
+
   ngOnInit() {}
 
-  login(email, senha) {
-    this.loginService.onLogin(email, senha);
+  login() {
+    this.loginService.onLogin(this.username, this.password);
   }
 
   loginFacebook() {

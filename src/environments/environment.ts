@@ -6,7 +6,7 @@ export const environment = {
   production: false
 };
 
-export const firebaseConfig = {
+var firebaseConfig = {
   apiKey: "AIzaSyAKzH3wEhWguathEe9KKmfGb3kH7iIUFxY",
   authDomain: "the-eye-7810a.firebaseapp.com",
   databaseURL: "https://the-eye-7810a.firebaseio.com",
@@ -16,6 +16,8 @@ export const firebaseConfig = {
   appId: "1:15802054972:web:ea2ca0834caaafaeaf8639",
   measurementId: "G-4V797KQ8LZ"
 }
+
+export default firebaseConfig;
 
 /*
  * For easier debugging in development mode, you can import the following file

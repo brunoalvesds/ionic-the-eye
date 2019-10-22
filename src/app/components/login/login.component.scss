@@ -1,0 +1,103 @@
+.welcome-card img {
+    max-height: 35vh;
+    overflow: hidden;
+  }
+  
+  $purple1 : #160533;
+  $purple2 : #311266;
+  $purple3 : #8146CF;
+  $purple4 : #BA98F3;
+  
+  
+  .loginPage {
+    height: 100vh;
+    padding: 10px;
+    background: linear-gradient(180deg, #052725 0%, $purple1 72.66%);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  
+    .logo {
+      width: 295px;
+      height: 240px;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      background-image: url(../../../assets/img/logo-faded.png);
+      background-position: center center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      margin-bottom: 40px;
+  
+      img {
+        margin-bottom: 30px;
+      }
+    }
+  
+    .loginForm {
+        width: 250px;
+        input {
+            display: block;
+            width: 100%;
+            margin: 20px 0;
+            padding: 6px 0;
+            border-radius: 20px;
+            text-align: center;
+            background-color: $purple2;
+            color: $purple3;
+            border: none;
+            &::placeholder {
+                color: $purple3;
+            }
+        }
+        button {
+          display: block;
+          width: 100%;
+          padding: 9px 0;
+          font-size: 13px;
+          background: linear-gradient(90deg, #1BDB99 6.4%, rgba(38, 216, 154, 0) 87.2%), linear-gradient(270deg, #8C1FF3 0%, rgba(255, 255, 255, 0) 97.6%);
+          border: none;
+          border-radius: 20px;
+          color: white;
+          text-transform: uppercase;
+        }
+    }
+    .accountOptions {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        width: 250px;
+      button, a {
+          display: block;
+          width: 100%
+      }
+      button {
+          background: transparent;
+          border: 1px solid $purple3;
+          color: $purple4;
+          border-radius: 20px;
+          padding: 9px 0;
+          text-transform: uppercase;
+          font-size: 12px;
+          margin-bottom: 20px;
+      }
+      a {
+          text-align: center;
+          font-size: 12px;
+          color: #5F3B9D;
+          text-decoration: none;
+      }
+    }
+    .socialLogin {
+      margin-top: 20px;
+      margin-bottom: 20px;
+        img {
+            height: 42px;
+            &:nth-of-type(1) {
+                margin-right: 5px;
+            }
+        }
+    }
+  }

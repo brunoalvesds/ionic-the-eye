@@ -14,9 +14,5 @@ import { LoginComponent } from './login.component';
   ],
   declarations: [LoginComponent]
 })
-<<<<<<< HEAD
-export class LoginModule {}
-=======
 
-export class LoginComponentModule {}
->>>>>>> ad2ed6eeb6fe6bda8bf07daa7ceeeb722e2e114d
+export class LoginModule {}
