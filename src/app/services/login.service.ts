@@ -26,27 +26,32 @@ export class LoginService {
   }
 
   doFacebookLogin() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider())
-      .then(data => {
-        this.router.navigateByUrl('home');
-      })
-      .catch(error => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        this.toast.present(errorMessage);
-      });
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.FacebookAuthProvider();
+      console.log(provider);
+      this.afAuth.auth
+        .signInWithPopup(provider)
+        .then(res => {
+          console.log(res);
+          resolve(res);
+        }, err => {
+          console.log(err);
+          reject(err);
+        })
+    })
   }
 
-  doGoogleLogin() {
-    this.afAuth.auth.signInWithPopup(new firebase.auth.GoogleAuthProvider())
-      .then(data => {
-        this.router.navigateByUrl('home');
+  doGoogleLogin(){
+    return new Promise<any>((resolve, reject) => {
+      let provider = new firebase.auth.GoogleAuthProvider();
+      provider.addScope('profile');
+      provider.addScope('email');
+      this.afAuth.auth
+      .signInWithPopup(provider)
+      .then(res => {
+        resolve(res);
       })
-      .catch(error => {
-        // const errorCode = error.code;
-        const errorMessage = error.message;
-        this.toast.present(errorMessage);
-      });
+    })
   }
 
 }
