@@ -37,7 +37,7 @@ export class LoginService {
           this.router.navigateByUrl('home');
         }, err => {
           console.log(err);
-          alert('Login inválido.');
+          this.toast.present('Login inválido.');
           reject(err);
         })
     })
@@ -54,7 +54,7 @@ export class LoginService {
         resolve(res);
         this.router.navigateByUrl('home');
       }, error => {
-        alert('Login inválido.');
+        this.toast.present('Login inválido.');
         reject(error);
       })
     })
