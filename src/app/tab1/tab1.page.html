@@ -1,11 +1,29 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>
-      Tab One
-    </ion-title>
-  </ion-toolbar>
-</ion-header>
+
 
 <ion-content>
-    
+    <div class="loginPage">
+        <div class="logo">
+            <img src="../../assets/img/logo.png" alt="">
+        </div>
+
+        <form class="loginForm">
+            <input [(ngModel)]="login.username" type="text" class="userName" name="userName" placeholder="Usuario">
+            <input [(ngModel)]="login.password" type="password" class="userPassword" name="userPassword" placeholder="Senha">
+            <button (click)="fazerLogin()" class="submit">Login</button>
+        </form>
+
+        <div class="socialLogin">
+            <a href="#" class="facebookLogin">
+                <img src="../../assets/img/facebook-icon.png" alt="">
+            </a>
+            <a href="#" class="googleLogin">
+                <img src="../../assets/img/google-icon.png" alt="">
+            </a>
+        </div>
+
+        <div class="accountOptions">
+            <button class="newAccount">Criar conta</button>
+            <a href="#" class="rememberPass">Esqueceu a senha?</a>
+        </div>
+    </div>
 </ion-content>

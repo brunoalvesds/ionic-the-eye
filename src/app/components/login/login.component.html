@@ -1,0 +1,23 @@
+<ion-content>
+  <div class="loginPage">
+      <div class="logo">
+          <img src="../../../assets/img/logo.png" alt="">
+      </div>
+
+      <form class="loginForm">
+          <input [(ngModel)]="username" type="text" class="userName" name="userName" placeholder="Usuario">
+          <input [(ngModel)]="password" type="password" class="userPassword" name="userPassword" placeholder="Senha">
+          <button (click)="login()" class="submit">Login</button>
+      </form>
+
+      <div class="socialLogin">
+        <button class="fa fa-facebook" (click)="loginFacebook()"></button>
+        <button class="fa fa-google" (click)="loginGoogle()"></button>
+      </div>
+
+      <div class="accountOptions">
+          <button class="newAccount">Criar conta</button>
+          <button class="rememberPass">Esqueceu a senha?</button>
+      </div>
+  </div>
+</ion-content>

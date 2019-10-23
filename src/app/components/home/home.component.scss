@@ -1,0 +1,59 @@
+.flex {
+    display: flex;
+}
+
+.block {
+    display: block;
+}
+
+.father-title {
+    .position-title {
+        justify-content: center;
+        align-content: center;
+    }
+
+    .welcome-teacher {
+        margin-left: 8.5%;
+        margin-top: 11.8%;
+        margin-bottom: 7.4%;
+        color: #fff;
+        font-size: 54px;
+    }
+}
+
+.button-actions {
+    
+    .button-style {
+        width: 100%;
+        border: none;
+        color: white;
+        padding: 14px 28px;
+        font-size: 16px;
+        cursor: pointer;
+        text-align: center;
+    }
+
+    .first-button {
+        background-color: #383a73;
+    }
+
+    .second-button {
+        background-color: #3e61a6;
+    }
+
+    .third-button {
+        background-color: #1e4aa0;
+    }
+
+    .fourth-button {
+        background-color: #173879;
+    }
+
+    .fifth-button {
+        background-color: #116f98;
+    }
+
+    .sixth-button {
+        background-color: #35b798;
+    }
+} 
