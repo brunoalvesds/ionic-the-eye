@@ -1,5 +1,14 @@
 .flex {
     display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.welcome-teacher {
+    margin-top: 11.8%;
+    margin-bottom: 7.4%;
+    // color: #fff;
+    font-size: 54px;
 }
 
 .button-actions {

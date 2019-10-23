@@ -1,29 +1,22 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Home
-    </ion-title>
+    <ion-title>Home</ion-title>
     <ion-buttons slot="start">
-      <ion-button (click)="onLogout()">
-        <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-button>
-        <ion-icon ios="ios-settings" md="md-settings"></ion-icon>
-      </ion-button>
+      <ion-menu-button autoHide="false"></ion-menu-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
-<div class="flex">
-  <div class="button-actions">
-    <button class="button-style first-button">Realizar chamada</button>
-    <button class="button-style second-button">Adicionar turma</button>
-    <button class="button-style third-button">Editar turma</button>
-    <button class="button-style fourth-button">Adicionar aluno</button>
-    <button class="button-style fifth-button">Editar aluno</button>
-    <button class="button-style sixth-button">Ação</button>
-    <button class="button-style">Ação</button>
+<ion-content fullscreen>
+  <div class="flex">
+    <h2 class="ion-text-center welcome-teacher">Olá, <b>Professor!</b></h2>
+    <div class="button-actions">
+      <button class="button-style first-button">Realizar chamada</button>
+      <button class="button-style second-button">Adicionar turma</button>
+      <button class="button-style third-button">Editar turma</button>
+      <button class="button-style fourth-button">Adicionar aluno</button>
+      <button class="button-style fifth-button">Editar aluno</button>
+      <button class="button-style sixth-button">Ação</button>
+      <button class="button-style">Ação</button>
+    </div>
   </div>
-</div>
+</ion-content>

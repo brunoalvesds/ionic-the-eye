@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import * as firebase from 'firebase/app';
-import { Platform } from '@ionic/angular';
+import { Platform, AlertController, IonMenu, MenuController } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
 import firebaseConfig from './../environments/environment';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
+import { LoginService } from './services/login.service';
 
 @Component({
   selector: 'app-root',
@@ -18,7 +19,10 @@ export class AppComponent {
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
     private afAuth : AngularFireAuth,
-    private router: Router
+    private router: Router,
+    private loginService: LoginService, 
+    private alertCtrl: AlertController,
+    public menuCtrl: MenuController
   ) {
     this.initializeApp();
   }
@@ -30,4 +34,30 @@ export class AppComponent {
       // firebase.initializeApp(firebaseConfig);
     });
   }
+
+  async onLogout() {
+		const alert = await this.alertCtrl.create({
+			header: 'Deseja realmente sair?',
+			message: 'Dados não salvos podem ser perdidos!',
+			buttons: [
+				{
+					text: 'Cancelar',
+					role: 'cancel',
+					cssClass: 'secondary',
+					handler: (blah) => {
+						console.log('Confirmed Cancel');
+					}
+				}, {
+					text: 'Sair',
+					handler: () => {
+            this.loginService.doLogout();
+            if (this.menuCtrl.isOpen) {
+              this.menuCtrl.close();
+            }
+					}
+				}
+			]
+		});
+		await alert.present();
+	}
 }
