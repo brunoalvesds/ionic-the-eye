@@ -3,13 +3,19 @@
     <ion-title>
       Home
     </ion-title>
-    <ion-buttons slot="end">
+    <ion-buttons slot="start">
       <ion-button (click)="onLogout()">
-        Sair
+        <ion-icon ios="ios-log-out" md="md-log-out"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button>
+        <ion-icon ios="ios-settings" md="md-settings"></ion-icon>
       </ion-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
+
 <div class="flex">
   <div class="button-actions">
     <button class="button-style first-button">Realizar chamada</button>
