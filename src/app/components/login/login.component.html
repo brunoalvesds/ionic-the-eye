@@ -3,17 +3,10 @@
     <div class="logo">
       <img src="../../../assets/img/logo.png" alt="">
     </div>
-
-    <ion-list>
-      <ion-item>
-        <ion-label>Tipo de Login</ion-label>
-        <ion-select [(ngModel)]="escolha" [ngModelOptions]="{standalone: true}" >
-          <ion-select-option selected value="">Escolha</ion-select-option>
-          <ion-select-option value="Professor">Professor</ion-select-option>
-          <ion-select-option value="Aluno">Aluno</ion-select-option>
-        </ion-select>
-      </ion-item>
-    </ion-list>
+    
+    <form class="loginForm">
+      <button (click)="openPicker()">Selecione o tipo de acesso</button>
+    </form>
 
     <div *ngIf="escolha === 'Aluno'">
       <form class="loginForm">
