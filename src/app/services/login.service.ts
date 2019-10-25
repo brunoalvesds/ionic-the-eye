@@ -25,6 +25,16 @@ export class LoginService {
       });
   }
 
+  doLogout() {
+    firebase.auth().signOut()
+		.then(() => {
+			this.router.navigateByUrl('login');
+		})
+		.catch(error => {
+			this.toast.present(error.message);
+		});
+  }
+
   doFacebookLogin() {
     return new Promise<any>((resolve, reject) => {
       let provider = new firebase.auth.FacebookAuthProvider();

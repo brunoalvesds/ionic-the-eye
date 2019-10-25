@@ -1,13 +1,25 @@
 <ion-content>
   <div class="loginPage">
-      <div class="logo">
-          <img src="../../../assets/img/logo.png" alt="">
-      </div>
+    <div class="logo">
+      <img src="../../../assets/img/logo.png" alt="">
+    </div>
+    
+    <form class="loginForm">
+      <button (click)="openPicker()">Selecione o tipo de acesso</button>
+    </form>
 
+    <div *ngIf="escolha === 'Aluno'">
       <form class="loginForm">
-          <input [(ngModel)]="username" type="text" class="userName" name="userName" placeholder="Usuario">
-          <input [(ngModel)]="password" type="password" class="userPassword" name="userPassword" placeholder="Senha">
-          <button (click)="login()" class="submit">Login</button>
+        <input [(ngModel)]="buscaAluno" type="text" class="userName" name="userName" placeholder="RA">
+        <button class="submit">Buscar</button>
+      </form>
+    </div>
+
+    <div *ngIf="escolha === 'Professor'">
+      <form class="loginForm">
+        <input [(ngModel)]="username" type="text" class="userName" name="userName" placeholder="Usuario">
+        <input [(ngModel)]="password" type="password" class="userPassword" name="userPassword" placeholder="Senha">
+        <button (click)="login()" class="submit">Login</button>
       </form>
 
       <div class="socialLogin">
@@ -16,8 +28,9 @@
       </div>
 
       <div class="accountOptions">
-          <button class="newAccount">Criar conta</button>
-          <button class="rememberPass">Esqueceu a senha?</button>
+        <button class="newAccount">Criar conta</button>
+        <button class="rememberPass">Esqueceu a senha?</button>
       </div>
+    </div>
   </div>
 </ion-content>
