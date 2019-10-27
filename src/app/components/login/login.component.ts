@@ -22,6 +22,8 @@ export class LoginComponent implements OnInit {
   password: "";
   escolha: null;
   buscaAluno: "";
+  passwordType: string = 'password';
+  passwordIcon: string = 'eye-off';
 
   ngOnInit() {
   }
@@ -78,6 +80,15 @@ export class LoginComponent implements OnInit {
       })
     }
     return options;
+  }
+
+  resetPassword(email: string) {
+    this.loginService.resetPassword(email)
+  }
+
+  hideShowPassword() {
+    this.passwordType = this.passwordType === 'text' ? 'password' : 'text';
+    this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
 }
