@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="accountOptions" [ngClass]="{'createClass' : escolha == null}">
+    <div class="accountOptions" [ngClass]="{'createClass' : escolha == null || escolha == 'Aluno'}">
       <button class="newAccount" routerLink="/register">Criar conta</button>
       <button *ngIf="username != null" class="rememberPass" (click)="resetPassword(username)">Esqueceu a senha?</button>
     </div>

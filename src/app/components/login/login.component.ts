@@ -52,7 +52,6 @@ export class LoginComponent implements OnInit {
           text: 'Confirm',
           handler: (value) => {
             this.escolha = value.col0.text;
-            console.log(value);
           }
         }
       ]

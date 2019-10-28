@@ -76,7 +76,26 @@ export class LoginService {
       .then(() => 
         this.toast.present('Verifique seu email.'))
       .catch((error) => 
-      this.toast.present(error))
+      this.interpretErrorMessage(error))
+  }
+
+  interpretErrorMessage(error) {
+    var errorMessage = '';
+    switch (error.code) {
+      case 'auth/invalid-email':
+        errorMessage = 'Erro: O email está mal formatado.'
+        this.toast.present(errorMessage);
+        break;
+      case 'auth/user-not-found':
+        errorMessage = 'Erro: Nenhum usuário foi encontrado com o email digitado. O usuário pode ter sido deletado.'
+        this.toast.present(errorMessage);
+        break;
+      default:
+        errorMessage = 'Erro: Verifique sua conexão com a internet.'
+        this.toast.present(errorMessage);
+        break;
+    }
+    return errorMessage;
   }
 
 }
