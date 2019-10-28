@@ -1,10 +1,50 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Cadastro </ion-title>
+    <ion-title>Adicionar Aluno</ion-title>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen>
-  <p>
-    register works!
-  </p>
+
+<ion-content>
+  <div class="conteudo-container">
+    <div class="titulo-container">
+      <div class="books-img-container">
+        <img src="../../../assets/img/books.png">
+      </div>
+      <div class="titulo-texto-container">
+          <p class="titulo-texto">Adicione um <br> novo aluno</p>
+      </div>
+    </div>
+
+    <div class="cadastro-container">
+      <div class="cadastro">
+        <input type="text" class="cadastro-campos" placeholder="Nome do aluno">
+        <div class="campo-ra-info">
+            <input type="text" class="cadastro-campos" inputmode="numeric" placeholder="RA"> 
+            <div class="icon-info"  (click)="show = !show">
+              <ion-icon name="information-circle-outline"></ion-icon>
+            </div>
+        </div>
+        <select class="cadastro-campos" required>
+          <option value="" class="opcao-aluno" hidden>Turma</option>
+          <option value="" class="opcao-aluno">Teste1</option>
+          <option value="" class="opcao-aluno">Teste2</option>
+          <option value="" class="opcao-aluno">Teste3</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="info-ra-container" *ngIf="show" (click)="show = !show">
+      <div class="info-ra">
+        <p class="info-ra-texto">
+          Digite neste campo o <br> número de R.A. do aluno.
+        </p>
+      </div>
+    </div>
+
+    <div class="botao-add-aluno-container">
+        <button class="botao-add-aluno">
+          <p class="texto-botao-add-aluno">ADICIONAR</p>
+        </button>
+    </div>
+  </div>
 </ion-content>
