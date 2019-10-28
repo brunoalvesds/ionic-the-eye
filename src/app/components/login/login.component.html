@@ -3,7 +3,7 @@
     <div class="logo">
       <img src="../../../assets/img/logo.png" alt="">
     </div>
-    
+
     <form class="loginForm">
       <button (click)="openPicker()">Selecione o tipo de acesso</button>
     </form>
@@ -18,19 +18,20 @@
     <div *ngIf="escolha === 'Professor'">
       <form class="loginForm">
         <input [(ngModel)]="username" type="text" class="userName" name="userName" placeholder="Usuario">
-        <input [(ngModel)]="password" type="password" class="userPassword" name="userPassword" placeholder="Senha">
+        <input [(ngModel)]="password" [type]="passwordType" class="userPassword" name="userPassword"
+          placeholder="Senha">
+        <!-- <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon> -->
         <button (click)="login()" class="submit">Login</button>
       </form>
-
       <div class="socialLogin">
         <button class="fa fa-facebook" (click)="loginFacebook()"></button>
         <button class="fa fa-google" (click)="loginGoogle()"></button>
       </div>
+    </div>
 
-      <div class="accountOptions">
-        <button class="newAccount">Criar conta</button>
-        <button class="rememberPass">Esqueceu a senha?</button>
-      </div>
+    <div class="accountOptions" [ngClass]="{'createClass' : escolha == null}">
+      <button class="newAccount" routerLink="/register">Criar conta</button>
+      <button *ngIf="username != null" class="rememberPass" (click)="resetPassword(username)">Esqueceu a senha?</button>
     </div>
   </div>
 </ion-content>

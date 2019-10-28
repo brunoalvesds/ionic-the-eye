@@ -70,4 +70,13 @@ export class LoginService {
     })
   }
 
+  resetPassword(email: string) {
+    var auth = firebase.auth();
+    return auth.sendPasswordResetEmail(email)
+      .then(() => 
+        this.toast.present('Verifique seu email.'))
+      .catch((error) => 
+      this.toast.present(error))
+  }
+
 }
