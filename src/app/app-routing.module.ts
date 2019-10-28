@@ -15,6 +15,7 @@ const routes: Routes = [
   { path: 'register-class', loadChildren: () => import('./components/register-class/register-class.module').then( m => m.RegisterClassComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
   { path: 'edit-class/:id', loadChildren: () => import('./components/edit-class/edit-class.module').then( m => m.EditClassComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
   { path: 'sucess', loadChildren: () => import('./components/sucess/sucess.module').then( m => m.SucessComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
+  { path: 'terms', loadChildren: () => import('./components/terms/terms.module').then( m => m.TermsComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}}  
 ];
 
 @NgModule({
