@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { PickerController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
 
 @Component({
   selector: 'app-login',
@@ -9,18 +9,10 @@ import { PickerController } from '@ionic/angular';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private pickerController: PickerController) { }
-
-  defaultColumnOptions = [
-    [
-      'Selecione',
-      'Aluno',
-      'Professor'
-    ]
-  ];
+  constructor(private loginService: LoginService, public actionSheetController: ActionSheetController) { }
   username: "";
   password: "";
-  escolha: null;
+  escolha;
   buscaAluno: "";
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
@@ -40,45 +32,35 @@ export class LoginComponent implements OnInit {
     this.loginService.doGoogleLogin();
   }
 
-  async openPicker(numColumns = 1, numOptions = 5, columnOptions = this.defaultColumnOptions){
-    const picker = await this.pickerController.create({
-      columns: this.getColumns(numColumns, numOptions, columnOptions),
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Login',
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel'
-        },
-        {
-          text: 'Confirm',
-          handler: (value) => {
-            this.escolha = value.col0.text;
+          text: 'Aluno',
+          icon: 'person',
+          handler: () => {
+            this.escolha = 'Aluno';
           }
+        }, 
+        {
+          text: 'Professor',
+          icon: 'school',
+          handler: () => {
+            this.escolha = 'Professor';
+          }
+        }, 
+        {
+          text: 'Cancelar',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            this.escolha = '';
         }
-      ]
+      }
+    ]
     });
-    await picker.present();
-  }
-
-  getColumns(numColumns, numOptions, columnOptions) {
-    let columns = [];
-    for (let i = 0; i < numColumns; i++) {
-      columns.push({
-        name: `col${i}`,
-        options: this.getColumnOptions(i, numOptions, columnOptions)
-      });
-    }
-    return columns;
-  }
-  
-  getColumnOptions(columnIndex, numOptions, columnOptions) {
-    let options = [];
-    for (let i = 0; i < numOptions; i++) {
-      options.push({
-        text: columnOptions[columnIndex][i % numOptions],
-        value: i
-      })
-    }
-    return options;
+    await actionSheet.present();
   }
 
   resetPassword(email: string) {
