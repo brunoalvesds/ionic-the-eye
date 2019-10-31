@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { ActionSheetController } from '@ionic/angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'app-login',
@@ -9,19 +10,29 @@ import { ActionSheetController } from '@ionic/angular';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, public actionSheetController: ActionSheetController) { }
-  username: "";
-  password: "";
+  user: FormGroup;
+
+  constructor(
+    private loginService: LoginService,
+    public actionSheetController: ActionSheetController,
+    private fb: FormBuilder
+  ) { }
+
   escolha;
   buscaAluno: "";
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
 
   ngOnInit() {
+    this.user = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
   }
 
   login() {
-    this.loginService.onLogin(this.username, this.password);
+    // console.log(this.user)
+    this.loginService.onLogin(this.user.value.email, this.user.value.password);
   }
 
   loginFacebook() {
@@ -42,20 +53,22 @@ export class LoginComponent implements OnInit {
           handler: () => {
             this.escolha = 'Aluno';
           }
-        }, 
+        },
         {
           text: 'Professor',
           icon: 'school',
           handler: () => {
             this.escolha = 'Professor';
           }
-        }, 
+        },
         {
           text: 'Cancelar',
           icon: 'close',
           role: 'cancel',
           handler: () => {
             this.escolha = '';
+            this.user.value.email = '';
+            this.user.value.password = '';
         }
       }
     ]
