@@ -14,6 +14,8 @@ const routes: Routes = [
   { path: 'register-student', loadChildren: () => import('./components/register-student/register-student.module').then( m => m.RegisterStudentComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
   { path: 'register-class', loadChildren: () => import('./components/register-class/register-class.module').then( m => m.RegisterClassComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
   { path: 'edit-class/:id', loadChildren: () => import('./components/edit-class/edit-class.module').then( m => m.EditClassComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
+  { path: 'list-classes', loadChildren: () => import('./components/list-classes/list-classes.module').then( m => m.ListClassesComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
+  { path: 'calendar', loadChildren: () => import('./components/calendar/calendar.module').then( m => m.CalendarComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
   { path: 'sucess', loadChildren: () => import('./components/sucess/sucess.module').then( m => m.SucessComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}},  
   { path: 'terms', loadChildren: () => import('./components/terms/terms.module').then( m => m.TermsComponentModule), canActivate: [AngularFireAuthGuard], data : {authGuardPipe : redirectUnauthorizedToHome}}  
 ];

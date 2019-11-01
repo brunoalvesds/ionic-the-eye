@@ -28,10 +28,9 @@
         <button class="fa fa-google" (click)="loginGoogle()"></button>
       </div>
     </div>
-
     <div class="accountOptions" [ngClass]="{'createClass' : escolha == '' || !escolha || escolha == 'Aluno'}">
       <button class="newAccount" routerLink="/register">Criar conta</button>
-      <button *ngIf="user.email != null && user.email != ''" class="rememberPass" (click)="resetPassword(username)">Esqueceu a senha?</button>
+      <button *ngIf="user.value.email != null && user.value.email != ''" class="rememberPass" (click)="resetPassword(username)">Esqueceu a senha?</button>
     </div>
   </div>
 </ion-content>
