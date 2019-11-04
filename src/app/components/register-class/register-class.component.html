@@ -1,13 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Cadastro turma </ion-title>
+    <ion-title> Adicionar turma </ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen>
-  <p>
-    register-class works!
-  </p>
+<ion-content>
+  <div class="conteudo-container">
+    <div class="titulo-container">
+      <div class="books-img-container">
+        <img src="../../../assets/img/books.png">
+      </div>
+      <div class="titulo-texto-container">
+        <p class="titulo-texto">Adicione uma <br> nova turma</p>
+      </div>
+    </div>
+
+    <form [formGroup]="turma">
+      <div class="cadastro-container">
+        <div class="cadastro">
+          <input formControlName="curso" type="text" class="cadastro-campos" placeholder="Curso">
+          <div class="campo-ra-info">
+            <input formControlName="nomeTurma" type="text" class="cadastro-campos" placeholder="Nome da turma">
+          </div>
+        </div>
+      </div>
+  
+      <div class="botao-add-turma-container">
+        <button class="botao-add-turma">
+          <p class="texto-botao-add-turma">ADICIONAR</p>
+        </button>
+      </div>
+    </form>
+  </div>
 </ion-content>

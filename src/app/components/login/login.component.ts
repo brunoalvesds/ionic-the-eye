@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
 import { ActionSheetController } from '@ionic/angular';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from './modal/modal.page';
 
 @Component({
   selector: 'app-login',
@@ -11,17 +13,17 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 export class LoginComponent implements OnInit {
 
   user: FormGroup;
-
-  constructor(
-    private loginService: LoginService,
-    public actionSheetController: ActionSheetController,
-    private fb: FormBuilder
-  ) { }
-
   escolha;
   buscaAluno: "";
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
+
+  constructor(
+    private loginService: LoginService,
+    public actionSheetController: ActionSheetController,
+    private fb: FormBuilder,
+    public modalController: ModalController
+  ) { }
 
   ngOnInit() {
     this.user = this.fb.group({
@@ -85,4 +87,13 @@ export class LoginComponent implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
+  async searchStudent(ra) {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        'RA': ra
+      }
+    });
+    return await modal.present();
+  }
 }

@@ -1,15 +1,37 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>
-      Cadastro
-    </ion-title>
+    <ion-title> Cadastro professor </ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content fullscreen>
-  <p style="color:white">
-    register works!
-  </p>
+<ion-content>
+  <div class="conteudo-container">
+    <div class="titulo-container">
+      <div class="books-img-container">
+        <img src="../../../assets/img/books.png">
+      </div>
+      <div class="titulo-texto-container">
+        <p class="titulo-texto">Cadastro de Professor</p>
+      </div>
+    </div>
+
+    <form [formGroup]="newProfessor">
+      <div class="cadastro-container">
+        <div class="cadastro">
+          <input formControlName="nome" type="text" class="cadastro-campos" placeholder="Nome">
+          <input formControlName="email" type="text" class="cadastro-campos" placeholder="Email">
+          <input formControlName="password" type="password" class="cadastro-campos" placeholder="Senha">
+          <input formControlName="repeatPassword" (blur)="checkPassword(newProfessor.value.password , newProfessor.value.repeatPassword)" type="password" class="cadastro-campos" placeholder="Repita a senha">
+        </div>
+      </div>
+
+      <div class="botao-add-turma-container">
+        <button class="botao-add-turma" [disabled]="!newProfessor.isValid">
+          <p class="texto-botao-add-turma" (click)="registerUser(newProfessor)">Cadastrar</p>
+        </button>
+      </div>
+    </form>
+  </div>
 </ion-content>
