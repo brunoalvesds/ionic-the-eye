@@ -9,9 +9,9 @@
     </form>
 
     <div *ngIf="escolha === 'Aluno'">
-      <form class="loginForm">
-        <input [(ngModel)]="buscaAluno" type="text" class="userName" name="userName" placeholder="RA">
-        <button class="submit" (click)="searchStudent(817116795)">Buscar</button>
+      <form class="loginForm" [formGroup]="student">
+        <input formControlName="ra" type="text" class="userName" name="userName" placeholder="RA">
+        <button class="submit" (click)="searchStudent()">Buscar</button>
       </form>
     </div>
 

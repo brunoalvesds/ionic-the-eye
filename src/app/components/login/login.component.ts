@@ -13,8 +13,8 @@ import { ModalPage } from './modal/modal.page';
 export class LoginComponent implements OnInit {
 
   user: FormGroup;
+  student: FormGroup;
   escolha;
-  buscaAluno: "";
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
 
@@ -29,6 +29,10 @@ export class LoginComponent implements OnInit {
     this.user = this.fb.group({
       email: ['', Validators.required],
       password: ['', Validators.required]
+    });
+
+    this.student = this.fb.group({
+      ra: ['', Validators.required]
     });
   }
 
@@ -71,6 +75,7 @@ export class LoginComponent implements OnInit {
             this.escolha = '';
             this.user.value.email = '';
             this.user.value.password = '';
+            this.student.value.ra = '';
         }
       }
     ]
@@ -87,11 +92,11 @@ export class LoginComponent implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
-  async searchStudent(ra) {
+  async searchStudent() {
     const modal = await this.modalController.create({
       component: ModalPage,
       componentProps: {
-        'RA': ra
+        'RA': this.student.value.ra
       }
     });
     return await modal.present();
