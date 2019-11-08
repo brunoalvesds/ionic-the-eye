@@ -5,20 +5,20 @@
     </div>
 
     <form class="loginForm">
-      <button (click)="openPicker()">Selecione o tipo de acesso</button>
+      <button (click)="presentActionSheet()">Selecione o tipo de acesso</button>
     </form>
 
     <div *ngIf="escolha === 'Aluno'">
-      <form class="loginForm">
-        <input [(ngModel)]="buscaAluno" type="text" class="userName" name="userName" placeholder="RA">
-        <button class="submit">Buscar</button>
+      <form class="loginForm" [formGroup]="student">
+        <input formControlName="ra" type="text" class="userName" name="userName" placeholder="RA">
+        <button class="submit" (click)="searchStudent()">Buscar</button>
       </form>
     </div>
 
     <div *ngIf="escolha === 'Professor'">
-      <form class="loginForm">
-        <input [(ngModel)]="username" type="text" class="userName" name="userName" placeholder="Usuario">
-        <input [(ngModel)]="password" [type]="passwordType" class="userPassword" name="userPassword"
+      <form class="loginForm" [formGroup]="user">
+        <input formControlName="email" type="text" class="userName" name="userName" placeholder="Usuario">
+        <input formControlName="password" [type]="passwordType" class="userPassword" name="userPassword"
           placeholder="Senha">
         <!-- <ion-icon slot="end" [name]="passwordIcon" class="passwordIcon" (click)='hideShowPassword()'></ion-icon> -->
         <button (click)="login()" class="submit">Login</button>
@@ -28,10 +28,9 @@
         <button class="fa fa-google" (click)="loginGoogle()"></button>
       </div>
     </div>
-
-    <div class="accountOptions" [ngClass]="{'createClass' : escolha == null}">
+    <div class="accountOptions" [ngClass]="{'createClass' : escolha == '' || !escolha || escolha == 'Aluno'}">
       <button class="newAccount" routerLink="/register">Criar conta</button>
-      <button *ngIf="username != null" class="rememberPass" (click)="resetPassword(username)">Esqueceu a senha?</button>
+      <button *ngIf="user.value.email != null && user.value.email != ''" class="rememberPass" (click)="resetPassword(username)">Esqueceu a senha?</button>
     </div>
   </div>
 </ion-content>

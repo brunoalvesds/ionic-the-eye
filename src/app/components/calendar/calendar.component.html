@@ -1,13 +1,11 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title> Chamada </ion-title>
+    <ion-title> Calendário </ion-title>
     <ion-buttons slot="start">
       <ion-back-button defaultHref="/"></ion-back-button>
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <p>
-    call works!
-  </p>
+  <full-calendar #calendar [plugins]="calendarPlugins"></full-calendar>
 </ion-content>

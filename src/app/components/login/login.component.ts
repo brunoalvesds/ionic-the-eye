@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { LoginService } from 'src/app/services/login.service';
-import { PickerController } from '@ionic/angular';
+import { ActionSheetController } from '@ionic/angular';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { ModalController } from '@ionic/angular';
+import { ModalPage } from './modal/modal.page';
 
 @Component({
   selector: 'app-login',
@@ -9,27 +12,33 @@ import { PickerController } from '@ionic/angular';
 })
 export class LoginComponent implements OnInit {
 
-  constructor(private loginService: LoginService, private pickerController: PickerController) { }
-
-  defaultColumnOptions = [
-    [
-      'Selecione',
-      'Aluno',
-      'Professor'
-    ]
-  ];
-  username: "";
-  password: "";
-  escolha: null;
-  buscaAluno: "";
+  user: FormGroup;
+  student: FormGroup;
+  escolha;
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
 
+  constructor(
+    private loginService: LoginService,
+    public actionSheetController: ActionSheetController,
+    private fb: FormBuilder,
+    public modalController: ModalController
+  ) { }
+
   ngOnInit() {
+    this.user = this.fb.group({
+      email: ['', Validators.required],
+      password: ['', Validators.required]
+    });
+
+    this.student = this.fb.group({
+      ra: ['', Validators.required]
+    });
   }
 
   login() {
-    this.loginService.onLogin(this.username, this.password);
+    // console.log(this.user)
+    this.loginService.onLogin(this.user.value.email, this.user.value.password);
   }
 
   loginFacebook() {
@@ -40,46 +49,38 @@ export class LoginComponent implements OnInit {
     this.loginService.doGoogleLogin();
   }
 
-  async openPicker(numColumns = 1, numOptions = 5, columnOptions = this.defaultColumnOptions){
-    const picker = await this.pickerController.create({
-      columns: this.getColumns(numColumns, numOptions, columnOptions),
+  async presentActionSheet() {
+    const actionSheet = await this.actionSheetController.create({
+      header: 'Login',
       buttons: [
         {
-          text: 'Cancel',
-          role: 'cancel'
+          text: 'Aluno',
+          icon: 'person',
+          handler: () => {
+            this.escolha = 'Aluno';
+          }
         },
         {
-          text: 'Confirm',
-          handler: (value) => {
-            this.escolha = value.col0.text;
-            console.log(value);
+          text: 'Professor',
+          icon: 'school',
+          handler: () => {
+            this.escolha = 'Professor';
           }
+        },
+        {
+          text: 'Cancelar',
+          icon: 'close',
+          role: 'cancel',
+          handler: () => {
+            this.escolha = '';
+            this.user.value.email = '';
+            this.user.value.password = '';
+            this.student.value.ra = '';
         }
-      ]
+      }
+    ]
     });
-    await picker.present();
-  }
-
-  getColumns(numColumns, numOptions, columnOptions) {
-    let columns = [];
-    for (let i = 0; i < numColumns; i++) {
-      columns.push({
-        name: `col${i}`,
-        options: this.getColumnOptions(i, numOptions, columnOptions)
-      });
-    }
-    return columns;
-  }
-  
-  getColumnOptions(columnIndex, numOptions, columnOptions) {
-    let options = [];
-    for (let i = 0; i < numOptions; i++) {
-      options.push({
-        text: columnOptions[columnIndex][i % numOptions],
-        value: i
-      })
-    }
-    return options;
+    await actionSheet.present();
   }
 
   resetPassword(email: string) {
@@ -91,4 +92,13 @@ export class LoginComponent implements OnInit {
     this.passwordIcon = this.passwordIcon === 'eye-off' ? 'eye' : 'eye-off';
   }
 
+  async searchStudent() {
+    const modal = await this.modalController.create({
+      component: ModalPage,
+      componentProps: {
+        'RA': this.student.value.ra
+      }
+    });
+    return await modal.present();
+  }
 }
