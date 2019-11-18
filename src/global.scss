@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Roboto:300,400,500,700,900&display=swap');
+
 /*
  * App Global CSS
  * ----------------------------------------------------------------------------
@@ -26,3 +28,6 @@
 @import "~@ionic/angular/css/flex-utils.css";
 @import '~@fullcalendar/core/main.css';
 @import '~@fullcalendar/daygrid/main.css';
+
+// NG Swipe Cards style
+@import "~ng-swipe-card/style/styles";

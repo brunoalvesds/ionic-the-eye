@@ -1,13 +1,43 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title> Chamada </ion-title>
-    <ion-buttons slot="start">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
+
 <ion-content fullscreen>
-  <p>
-    call works!
-  </p>
+
+  <div class="intro">
+    <div class="intro__top">
+      <span (click) = "goBack()" class="back" ></span>
+      <span>( {{ formattedDate }} )</span>
+    </div>
+    <h1>Ele(a) veio hoje?</h1>
+    <div class="intro__bottom">
+      <h3 (click)="cardWrapper.dislike()" class="nao">NÃO</h3>
+      <h3 (click)="cardWrapper.like()" class="sim">SIM</h3>
+    </div>
+  </div>
+
+  <div class="chamada">
+    <sw-card-wrapper #cardWrapper>
+      <div class="card" *ngFor="let card of cards, let index = index" 
+           swSwipeable
+           [width]="350"
+           [height]="130"
+           [orientation]="'x'"
+           (released)="removeBy(index)"
+           (swiped)="direction($event, index)">
+        <div class="card-img">
+          <img src="{{ card.image }}" alt="Icon">
+        </div>
+
+        <div class="card-info"> 
+          <h2>{{ card.name }}</h2>
+          <h4>{{ card.ra }}</h4>
+        </div>
+      </div>
+    </sw-card-wrapper>
+
+    <div *ngIf="cards.length == 0" class="message">
+        <p>
+          Chamada finalizada!
+        </p>
+    </div>
+</div>
+
 </ion-content>
