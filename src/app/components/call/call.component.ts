@@ -17,43 +17,74 @@ export class CallComponent{
     {
       'name' : 'Joao Silva',
       'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png'
+      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
+      'presence' : null
     },
     {
       'name' : 'Maria Aparecida',
       'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png'
+      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
+      'presence' : null
     },
     {
       'name' : 'Paulo Velozo',
       'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png'
+      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
+      'presence' : null
     },
     {
       'name' : 'Aron Bado',
       'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png'
+      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
+      'presence' : null
     },
     {
       'name' : 'Simas Turbando',
       'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png'
+      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
+      'presence' : null
     },
   ]
 
-  public present = [];
+  public presenceList = [];
 
   constructor(private navCtrl: NavController) { }
 
-  public removeBy(index: number): void {
+  public answerCall(event, index: number): void {
+
+    if (event) {
+      // Seta a presença do aluno que foi adicionado como true
+      this.cards[index].presence = true
+    }
+    else {
+      // Seta a presença do aluno que foi adicionado como false
+      this.cards[index].presence = false
+    }
+
+    //Adiciona o aluno a uma segunda lista que irá conter as presenças e faltas
+    this.presenceList.push(this.cards[index])
+
+
+    //Remove o card da pilha
     this.cards.splice(index, 1);
+
+    console.table(this.presenceList)
+  
+        
   }
 
   public direction(event, index) {
 
+    //Adiciona o aluno a uma segunda lista que irá conter as presenças e faltas
+    this.presenceList.push(this.cards[index])
+
     if (event) {
-      this.present.push(this.cards[index])
-      console.log(this.present)
+      // Seta a presença do aluno que foi adicionado como true
+      this.presenceList[index].presence = true
+    }
+    else {
+      // Seta a presença do aluno que foi adicionado como false
+      this.presenceList[index].presence = false
     }
 
   }

@@ -20,8 +20,7 @@
            [width]="350"
            [height]="130"
            [orientation]="'x'"
-           (released)="removeBy(index)"
-           (swiped)="direction($event, index)">
+           (swiped)="answerCall($event, index)">
         <div class="card-img">
           <img src="{{ card.image }}" alt="Icon">
         </div>
