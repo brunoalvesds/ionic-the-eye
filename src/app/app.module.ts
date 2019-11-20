@@ -15,6 +15,7 @@ import { AngularFireModule } from '@angular/fire';
 import { AngularFireAuthGuard } from '@angular/fire/auth-guard';
 import { ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
+import { SwipeCardLibModule } from 'ng-swipe-card';
 
 @NgModule({
   declarations: [AppComponent],
@@ -27,7 +28,8 @@ import { FullCalendarModule } from '@fullcalendar/angular';
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    FullCalendarModule
+    FullCalendarModule,
+    SwipeCardLibModule
   ],
   providers: [
     StatusBar,
