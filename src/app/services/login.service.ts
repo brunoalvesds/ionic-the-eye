@@ -10,7 +10,8 @@ import * as firebase from 'firebase/app';
 
 export class LoginService {
 
-  constructor(private router: Router, private toast: ToastService, public afAuth: AngularFireAuth) { }
+  constructor(private router: Router, private toast: ToastService, public afAuth: AngularFireAuth) {
+   }
 
   onLogin(email, password) {
 

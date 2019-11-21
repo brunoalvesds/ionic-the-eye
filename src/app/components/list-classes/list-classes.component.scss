@@ -1,0 +1,21 @@
+mat-panel-title {
+  color: white;
+}
+
+ion-content,
+ion-item {
+  --background: #252759;
+  color: white !important;
+}
+
+.mat-expansion-panel {
+  margin: 5px;
+
+  .mat-expansion-indicator {
+    color: #fff;
+  }
+}
+
+.mat-expansion-panel-header {
+  background: #3f4284;
+}

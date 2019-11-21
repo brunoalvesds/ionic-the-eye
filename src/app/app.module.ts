@@ -17,6 +17,10 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { SwipeCardLibModule } from 'ng-swipe-card';
 
+import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatExpansionModule } from '@angular/material/expansion'; 
+
 @NgModule({
   declarations: [AppComponent],
   entryComponents: [],
@@ -24,12 +28,15 @@ import { SwipeCardLibModule } from 'ng-swipe-card';
     BrowserModule, 
     IonicModule.forRoot(), 
     AppRoutingModule,
+    HttpClientModule,
     ReactiveFormsModule,
     AngularFireDatabaseModule,
     AngularFireAuthModule,
     AngularFireModule.initializeApp(firebaseConfig),
     FullCalendarModule,
-    SwipeCardLibModule
+    SwipeCardLibModule,
+    BrowserAnimationsModule,
+    MatExpansionModule
   ],
   providers: [
     StatusBar,
