@@ -1,4 +1,4 @@
-<ion-header translucent>
+<ion-header translucent *ngIf="notFound == false">
     <ion-toolbar>
         <ion-title> {{ ra }} </ion-title>
         <ion-buttons slot="end">
@@ -6,19 +6,22 @@
         </ion-buttons>
     </ion-toolbar>
 </ion-header>
-<ion-content>
-    <div style="display:flex; justify-content: center; margin:20px;">
+<ion-content *ngIf="notFound == false" >
+    <div style="display:flex; justify-content: center; margin:20px;" >
         <ion-avatar>
             <img src="https://ionicframework.com/docs/demos/api/avatar/avatar.svg">
         </ion-avatar>
     </div>
     <div style="display:flex; justify-content: center; align-items: center; flex-direction: column; color: white;">
-        <ion-label>Nome</ion-label>
-        <ion-label>Curso</ion-label>
-        <ion-label>Turma</ion-label>
+        <ion-label>Nome: {{student.nome}}</ion-label>
     </div>
-    <ion-item>
-        <ion-label>Matéria</ion-label>
+    <ion-item class="faltas">
+        <ion-label>Quantidade de faltas:</ion-label>
         <ion-label>4</ion-label>
     </ion-item>
+</ion-content>
+
+<ion-content *ngIf="notFound == true" >
+        <ion-button (click)="dismiss()">Close</ion-button>
+<p>ALUNO NAO ENCONTRADO</p>
 </ion-content>
