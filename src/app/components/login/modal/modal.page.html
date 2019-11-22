@@ -13,11 +13,11 @@
         </ion-avatar>
     </div>
     <div style="display:flex; justify-content: center; align-items: center; flex-direction: column; color: white;">
-        <ion-label>Nome: {{student.nome}}</ion-label>
+        <ion-label>Nome: {{ student?.nome }}</ion-label>
     </div>
     <ion-item class="faltas">
         <ion-label>Quantidade de faltas:</ion-label>
-        <ion-label>4</ion-label>
+        <ion-label>{{ faults }}</ion-label>
     </ion-item>
 </ion-content>
 

@@ -17,6 +17,7 @@ export class LoginComponent implements OnInit {
   escolha;
   passwordType: string = 'password';
   passwordIcon: string = 'eye-off';
+  validRa = false;
 
   constructor(
     private loginService: LoginService,
@@ -32,7 +33,7 @@ export class LoginComponent implements OnInit {
     });
 
     this.student = this.fb.group({
-      ra: ['', Validators.required]
+      ra: ['', [Validators.required, Validators.minLength(7)]]
     });
   }
 

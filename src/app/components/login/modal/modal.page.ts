@@ -14,13 +14,15 @@ export class ModalPage implements OnInit {
   classes;
   student;
   notFound: boolean = false;
+  faults: number = 0;
 
   constructor(navParams: NavParams, private modalCtrl: ModalController, private http: HttpClient) {
     this.ra = navParams.get('RA');
   }
 
   ngOnInit() {
-    this.getStudents();  
+    this.getStudents();
+    this.getRandom();
   }
 
   dismiss() {
@@ -40,7 +42,7 @@ export class ModalPage implements OnInit {
           console.log("Turma: ", result);
           this.classes = result;
           this.findStudent();
-          this.countPresence()
+          this.countPresence();
           console.log(this.classes)
         },
           (error) => {
@@ -60,10 +62,12 @@ export class ModalPage implements OnInit {
 
   countPresence() {
     this.classes.forEach(turma => {
-      this.classes[3].forEach( aula => [
-        console.log(aula)
-      ]);
+        console.log(turma.AULAS);
     });
+  }
+
+  getRandom() {
+    this.faults = Math.floor(Math.random() * 10 + 1)
   }
   
 }

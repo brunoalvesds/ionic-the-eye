@@ -11,7 +11,7 @@
     <div *ngIf="escolha === 'Aluno'">
       <form class="loginForm" [formGroup]="student">
         <input formControlName="ra" type="text" class="userName" name="userName" placeholder="RA">
-        <button class="submit" (click)="searchStudent()">Buscar</button>
+        <button class="submit" (click)="searchStudent()" [disabled]="!student.valid">Buscar</button>
       </form>
     </div>
 
