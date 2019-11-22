@@ -4,10 +4,19 @@
 <ion-content fullscreen>
   <div class="select-class" *ngIf="startCall == false && callFinished == false">
     <div>
-      <label for="class">Selecione a turma:</label>
-      <select name="class" required [(ngModel)]="selectedClass">
-        <option *ngFor="let turma of classes; let i = index" value="{{i}}">{{turma.nomeTurma}}</option>
-      </select>
+      <div class="select-class-wrapper">
+        <label for="class">Selecione a turma:</label>
+        <select name="class" required [(ngModel)]="selectedClass">
+          <option *ngFor="let turma of classes; let i = index" value="{{i}}">{{turma.nomeTurma}}</option>
+        </select>
+      </div>
+
+      <div class="select-lesson-wrapper">
+          <label for="class">Selecione a aula:</label>
+          <select name="class" required [(ngModel)]="selectedLesson">
+            <option value="{{formattedDate}}">{{formattedDate}}</option>
+          </select>
+      </div>
     </div>
     <button (click)="searchClass()">Buscar</button>
   </div>
