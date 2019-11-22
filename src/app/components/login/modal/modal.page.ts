@@ -1,18 +1,24 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { NavParams, ModalController } from '@ionic/angular';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'modal-page',
   templateUrl: './modal.page.html',
   styleUrls: ['./modal.page.scss']
 })
-export class ModalPage {
+export class ModalPage implements OnInit {
 
   @Input() registroAluno: number;
   ra;
+  classes;
 
-  constructor(navParams: NavParams, private modalCtrl: ModalController) {
+  constructor(navParams: NavParams, private modalCtrl: ModalController, private http: HttpClient) {
     this.ra = navParams.get('RA');
+  }
+
+  ngOnInit() {
+    this.getStudents();  
   }
 
   dismiss() {
@@ -20,6 +26,30 @@ export class ModalPage {
     // can "dismiss" itself and optionally pass back data
     this.modalCtrl.dismiss({
       'dismissed': true
+    });
+  }
+
+  getStudents() {
+
+    const API_URL = 'https://the-eye-7810a.firebaseio.com/USERS/0/TURMAS.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R';
+    return new Promise((resolve, reject) => {
+      this.http.get(API_URL)
+        .subscribe((result: any) => {
+          console.log("Turma: ", result);
+          this.classes = result;
+          this.findStudent();
+        },
+          (error) => {
+            reject(JSON.stringify(error));
+          });
+    });
+  }
+
+  findStudent() {
+    this.classes[3].alunos.forEach(student => {
+      if(student.ra == this.ra) {
+        console.log(student);
+      }
     });
   }
 
