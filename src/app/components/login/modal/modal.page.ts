@@ -12,6 +12,8 @@ export class ModalPage implements OnInit {
   @Input() registroAluno: number;
   ra;
   classes;
+  student;
+  notFound: boolean = false;
 
   constructor(navParams: NavParams, private modalCtrl: ModalController, private http: HttpClient) {
     this.ra = navParams.get('RA');
@@ -38,6 +40,8 @@ export class ModalPage implements OnInit {
           console.log("Turma: ", result);
           this.classes = result;
           this.findStudent();
+          this.countPresence()
+          console.log(this.classes)
         },
           (error) => {
             reject(JSON.stringify(error));
@@ -48,9 +52,18 @@ export class ModalPage implements OnInit {
   findStudent() {
     this.classes[3].alunos.forEach(student => {
       if(student.ra == this.ra) {
-        console.log(student);
+        this.student = student;
+        console.log(this.student);
       }
     });
   }
 
+  countPresence() {
+    this.classes.forEach(turma => {
+      this.classes[3].forEach( aula => [
+        console.log(aula)
+      ]);
+    });
+  }
+  
 }
