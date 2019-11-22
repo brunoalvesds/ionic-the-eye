@@ -117,7 +117,69 @@ ion-content {
     p {
       color: white;
     }
+
+        
+    button {
+      margin-top: 15px;
+    }
+
   }
+}
+
+.chamada-finalizada {
+
+  .top {
+    display: flex;
+    align-items: center;
+
+
+    h2 {
+      margin-right: auto;
+      color: white;
+      text-align: center;
+      margin-bottom: 25px;
+    }
+
+  }
+
+  .container {
+    padding: 0 20px;
+  }
+
+ 
+
+  ul {
+    padding: 0;
+    li {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 8px;
+      color: white;
+      font-size: 18px;
+
+      span {
+        font-weight: bold;
+      }
+
+      .presente {
+        color: green;
+      }
+
+      .faltou {
+        color: red;
+      }
+    }
+  }
+}
+
+.back {
+  margin-right: auto;
+  display: block;
+  width: 20px;
+  height: 20px;
+  border-top: 2px solid white;
+  border-left: 2px solid white;
+  transform: rotate(-45deg);
 }
 
 select,

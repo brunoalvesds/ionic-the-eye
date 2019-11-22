@@ -1,17 +1,8 @@
 
 <ion-header>
-  <ion-toolbar>
-    <ion-title>Chamada</ion-title>
-    <ion-buttons slot="start">
-      <ion-menu-button menu="menu1" autoHide="false"></ion-menu-button>
-    </ion-buttons>
-    <ion-buttons slot="end">
-      <ion-back-button defaultHref="/"></ion-back-button>
-    </ion-buttons>
-  </ion-toolbar>
 </ion-header>
 <ion-content fullscreen>
-  <div class="select-class" *ngIf="startCall == false">
+  <div class="select-class" *ngIf="startCall == false && callFinished == false">
     <div>
       <label for="class">Selecione a turma:</label>
       <select name="class" required [(ngModel)]="selectedClass">
@@ -21,7 +12,7 @@
     <button (click)="searchClass()">Buscar</button>
   </div>
 
-  <div class="intro" *ngIf="startCall == true">
+  <div class="intro" *ngIf="startCall == true && callFinished == false">
     <div class="intro__top">
       <span (click) = "goBack()" class="back" ></span>
       <span>( {{ formattedDate }} )</span>
@@ -33,7 +24,7 @@
     </div>
   </div>
 
-  <div class="chamada" *ngIf="startCall == true">
+  <div class="chamada" *ngIf="startCall == true && callFinished == false">
     <sw-card-wrapper #cardWrapper>
       <div class="card" *ngFor="let card of studentsList, let index = index" 
            swSwipeable
@@ -52,10 +43,31 @@
       </div>
     </sw-card-wrapper>
 
-    <div  class="message">
-        <p>Chamada finalizada!</p>
-        <button (click)="insertCall()">Encerrar</button>
+    <div class="message">
+      <button (click)="insertCall()">Encerrar</button>
     </div>
+</div>
+
+<div class="chamada-finalizada" *ngIf="callFinished == true">
+
+    <div class="container">
+      <div class="top">
+        <span (click) = "goBack()" class="back" ></span>
+        <h2>Chamada finalizada!</h2>
+      </div>
+      <ul>
+        <li *ngFor="let aluno of presenceList">
+          {{ aluno.nome }} 
+          <span *ngIf="aluno.presence == true" class="presente">
+            presente
+          </span>
+          <span *ngIf="aluno.presence == false" class="faltou">
+              faltou
+          </span>
+        </li>
+      </ul>
+    </div>
+
 </div>
 
 </ion-content>
