@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AngularFireDatabase } from '@angular/fire/database';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { ListClassesComponent } from '../list-classes/list-classes.component';
 
 @Component({
   selector: 'app-call',
@@ -18,6 +19,7 @@ export class CallComponent {
   yyyy = this.today.getFullYear();
   formattedDate = this.dd + "-" + this.mm + "-" + this.yyyy;
   startCall: boolean = false;
+  callFinished : boolean = false;
   studentsList;
   selectedClass;
   classes;
@@ -92,6 +94,7 @@ export class CallComponent {
   }
 
   insertCall() {
+    this.callFinished = true
     const API_URL = 'https://the-eye-7810a.firebaseio.com/USERS/0/TURMAS/' + this.selectedClass + '/AULAS.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R';
     const httpOptions = {
       headers: new HttpHeaders({
@@ -118,6 +121,7 @@ export class CallComponent {
           reject(JSON.stringify(error));
         });
     });
+    
   }
 
 }
