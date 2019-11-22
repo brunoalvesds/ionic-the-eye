@@ -1,82 +1,60 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { AngularFireDatabase } from '@angular/fire/database';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-call',
   templateUrl: './call.component.html',
   styleUrls: ['./call.component.scss'],
 })
-export class CallComponent{
+export class CallComponent {
 
-  private date = new Date();
+  today = new Date();
+  dd = this.today.getDate();
+  mm = this.today.getMonth() + 1; //January is 0!
 
-  public formattedDate = this.date.toLocaleDateString()
-
-  public cards = [
-    {
-      'name' : 'Joao Silva',
-      'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
-      'presence' : null
-    },
-    {
-      'name' : 'Maria Aparecida',
-      'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
-      'presence' : null
-    },
-    {
-      'name' : 'Paulo Velozo',
-      'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
-      'presence' : null
-    },
-    {
-      'name' : 'Aron Bado',
-      'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
-      'presence' : null
-    },
-    {
-      'name' : 'Simas Turbando',
-      'ra' : '81712259',
-      'image' : 'https://png.pngtree.com/svg/20161205/person_25302.png',
-      'presence' : null
-    },
-  ]
+  yyyy = this.today.getFullYear();
+  formattedDate = this.dd + "-" + this.mm + "-" + this.yyyy;
+  startCall: boolean = false;
+  studentsList;
+  selectedClass;
+  classes;
 
   public presenceList = [];
 
-  constructor(private navCtrl: NavController) { }
+  constructor(private navCtrl: NavController, private http: HttpClient, private db: AngularFireDatabase) {
+    this.getStudents();
+  }
 
   public answerCall(event, index: number): void {
 
     if (event) {
       // Seta a presença do aluno que foi adicionado como true
-      this.cards[index].presence = true
+      this.studentsList[index].presence = true
     }
     else {
       // Seta a presença do aluno que foi adicionado como false
-      this.cards[index].presence = false
+      this.studentsList[index].presence = false
     }
 
     //Adiciona o aluno a uma segunda lista que irá conter as presenças e faltas
-    this.presenceList.push(this.cards[index])
+    this.presenceList.push(this.studentsList[index])
 
 
     //Remove o card da pilha
-    this.cards.splice(index, 1);
+    this.studentsList.splice(index, 1);
 
     console.table(this.presenceList)
-  
-        
+
+
   }
 
   public direction(event, index) {
 
     //Adiciona o aluno a uma segunda lista que irá conter as presenças e faltas
-    this.presenceList.push(this.cards[index])
+    this.presenceList.push(this.studentsList[index])
 
     if (event) {
       // Seta a presença do aluno que foi adicionado como true
@@ -91,6 +69,55 @@ export class CallComponent{
 
   public goBack() {
     this.navCtrl.back();
+  }
+
+  searchClass() {
+    this.startCall = true;
+    this.studentsList = this.classes[this.selectedClass].alunos;
+  }
+
+  getStudents() {
+
+    const API_URL = 'https://the-eye-7810a.firebaseio.com/USERS/0/TURMAS.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R';
+    return new Promise((resolve, reject) => {
+      this.http.get(API_URL)
+        .subscribe((result: any) => {
+          console.log("Turma: ", result);
+          this.classes = result;
+        },
+          (error) => {
+            reject(JSON.stringify(error));
+          });
+    });
+  }
+
+  insertCall() {
+    const API_URL = 'https://the-eye-7810a.firebaseio.com/USERS/0/TURMAS/' + this.selectedClass + '/AULAS.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R';
+    const httpOptions = {
+      headers: new HttpHeaders({
+        'Content-Type': 'application/json',
+        'Authorization': 'Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R'
+      })
+    };
+    let sendData = {};
+    sendData[this.formattedDate] = this.presenceList;
+    let sendDataString = JSON.stringify(sendData).toString();
+    console.log('API Send : ', sendDataString);
+
+    return new Promise((resolve, reject) => {
+      this.http.post(API_URL, sendDataString)
+        .toPromise()
+        .then((response) => {
+          console.log('API Response : ', response);
+          console.log('API Send : ', sendData);
+          resolve(response);
+        })
+        .catch((error) => {
+          console.error('API Error : ', error.status);
+          console.error('API Error : ', JSON.stringify(error));
+          reject(JSON.stringify(error));
+        });
+    });
   }
 
 }

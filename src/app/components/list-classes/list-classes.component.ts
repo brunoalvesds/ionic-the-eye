@@ -16,7 +16,7 @@ export class ListClassesComponent implements OnInit {
   }
 
   getAll() {
-    const API_URL = 'https://the-eye-7810a.firebaseio.com/TURMAS.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R'
+    const API_URL = 'https://the-eye-7810a.firebaseio.com/USERS/0/TURMAS.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R'
     return new Promise((resolve, reject) => {
       this.http.get(API_URL)
         .subscribe((result: any) => {

@@ -1,7 +1,27 @@
 
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Chamada</ion-title>
+    <ion-buttons slot="start">
+      <ion-menu-button menu="menu1" autoHide="false"></ion-menu-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-back-button defaultHref="/"></ion-back-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
 <ion-content fullscreen>
+  <div class="select-class" *ngIf="startCall == false">
+    <div>
+      <label for="class">Selecione a turma:</label>
+      <select name="class" required [(ngModel)]="selectedClass">
+        <option *ngFor="let turma of classes; let i = index" value="{{i}}">{{turma.nomeTurma}}</option>
+      </select>
+    </div>
+    <button (click)="searchClass()">Buscar</button>
+  </div>
 
-  <div class="intro">
+  <div class="intro" *ngIf="startCall == true">
     <div class="intro__top">
       <span (click) = "goBack()" class="back" ></span>
       <span>( {{ formattedDate }} )</span>
@@ -13,29 +33,28 @@
     </div>
   </div>
 
-  <div class="chamada">
+  <div class="chamada" *ngIf="startCall == true">
     <sw-card-wrapper #cardWrapper>
-      <div class="card" *ngFor="let card of cards, let index = index" 
+      <div class="card" *ngFor="let card of studentsList, let index = index" 
            swSwipeable
            [width]="350"
            [height]="130"
            [orientation]="'x'"
            (swiped)="answerCall($event, index)">
         <div class="card-img">
-          <img src="{{ card.image }}" alt="Icon">
+          <img src="https://png.pngtree.com/svg/20161205/person_25302.png" alt="Icon">
         </div>
 
         <div class="card-info"> 
-          <h2>{{ card.name }}</h2>
+          <h2>{{ card.nome }}</h2>
           <h4>{{ card.ra }}</h4>
         </div>
       </div>
     </sw-card-wrapper>
 
-    <div *ngIf="cards.length == 0" class="message">
-        <p>
-          Chamada finalizada!
-        </p>
+    <div  class="message">
+        <p>Chamada finalizada!</p>
+        <button (click)="insertCall()">Encerrar</button>
     </div>
 </div>
 
