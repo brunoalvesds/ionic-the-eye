@@ -197,12 +197,24 @@ button {
 }
 
 .select-class {
-  display: flex;
-  justify-content: space-between;
   padding: 150px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+
+  .select-lesson-wrapper {
+    margin: 20px 0;
+  }
+
+  button {
+    margin-top: 20px;
+  }
 
   label {
+    display: inline-block;
     color: white;
+    width: 140px;
   }
 
   select {

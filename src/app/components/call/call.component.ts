@@ -22,6 +22,7 @@ export class CallComponent {
   callFinished : boolean = false;
   studentsList;
   selectedClass;
+  selectedLesson;
   classes;
 
   public presenceList = [];
@@ -95,7 +96,7 @@ export class CallComponent {
 
   insertCall() {
     this.callFinished = true
-    const API_URL = 'https://the-eye-7810a.firebaseio.com/USERS/0/TURMAS/' + this.selectedClass + '/AULAS.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R';
+    const API_URL = 'https://the-eye-7810a.firebaseio.com/USERS/0/TURMAS/' + this.selectedClass + '/AULAS/' + this.selectedLesson + '.json?auth=Nwwhyn7ghzhktKDVaxqEnYbWmy3qXua7jwqnYp4R';
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json',
