@@ -52,7 +52,7 @@
       </div>
     </sw-card-wrapper>
 
-    <div class="message">
+    <div class="message" *ngIf="studentsList.length == 0">
       <button (click)="insertCall()">Encerrar</button>
     </div>
 </div>
