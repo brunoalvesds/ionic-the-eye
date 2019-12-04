@@ -9,6 +9,7 @@ ion-item {
 }
 
 .mat-expansion-panel {
+  background: #252759 !important;
   margin: 5px;
 
   .mat-expansion-indicator {
@@ -18,4 +19,12 @@ ion-item {
 
 .mat-expansion-panel-header {
   background: #3f4284;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+  background-color: #3f4284 !important;
 }
