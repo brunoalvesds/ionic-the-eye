@@ -20,6 +20,7 @@ export class CallComponent {
 
 	yyyy = this.today.getFullYear();
 	formattedDate = this.dd + "-" + this.mm + "-" + this.yyyy;
+	barsDateFormat = this.dd + "/" + this.mm + "/" + this.yyyy;
 	startCall: boolean = false;
 	callFinished: boolean = false;
 	studentsList;
@@ -108,7 +109,7 @@ export class CallComponent {
 
 		//Send to Service
 		let sendToService = {};
-		sendToService["data"] = this.formattedDate;
+		sendToService["data"] = this.barsDateFormat;
 		sendToService["alunos"] = this.presenceList;
 
 		this.listCallsService.addCall(sendToService);
