@@ -1,0 +1,43 @@
+mat-panel-title {
+  color: white;
+}
+
+ion-content,
+ion-item {
+  --background: #252759;
+  color: white !important;
+}
+
+.mat-expansion-panel {
+  background: #252759 !important;
+  margin: 5px;
+
+  .mat-expansion-indicator {
+    color: #fff;
+  }
+}
+
+.mat-expansion-panel-header {
+  background: #3f4284;
+
+  &:hover {
+    color: inherit;
+  }
+}
+
+.mat-expansion-panel:not(.mat-expanded):not([aria-disabled=true]) .mat-expansion-panel-header:hover {
+  background-color: #3f4284 !important;
+}
+
+
+table {
+  color: white;
+
+  tr {
+    border-bottom: 1px solid white;
+
+    td {
+      padding: 10px 0;
+    }
+  }
+}

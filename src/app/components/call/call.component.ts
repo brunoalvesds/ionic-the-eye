@@ -5,6 +5,7 @@ import { AngularFireDatabase } from '@angular/fire/database';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { ListClassesComponent } from '../list-classes/list-classes.component';
 import { map } from 'rxjs/operators';
+import { ListCallsService } from 'src/app/services/list-calls.service';
 
 @Component({
 	selector: 'app-call',
@@ -28,7 +29,7 @@ export class CallComponent {
 
 	public presenceList = [];
 
-	constructor(private navCtrl: NavController, private http: HttpClient, private db: AngularFireDatabase) {
+	constructor(private navCtrl: NavController, private http: HttpClient, private db: AngularFireDatabase, private listCallsService: ListCallsService) {
 		this.getStudents();
 	}
 
@@ -104,6 +105,16 @@ export class CallComponent {
 		};
 		let sendData = {};
 		sendData[this.formattedDate] = this.presenceList;
+
+		//Send to Service
+		let sendToService = {};
+		sendToService["data"] = this.formattedDate;
+		sendToService["alunos"] = this.presenceList;
+
+		this.listCallsService.addCall(sendToService);
+
+
+
 		let sendDataString = JSON.stringify(sendData).toString();
 		console.log('API Send : ', sendDataString);
 

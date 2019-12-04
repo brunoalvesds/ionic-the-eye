@@ -6,7 +6,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./register-student.component.scss'],
 })
 export class RegisterStudentComponent implements OnInit {
-
+  show = true;
   constructor() { }
 
   ngOnInit() {}
